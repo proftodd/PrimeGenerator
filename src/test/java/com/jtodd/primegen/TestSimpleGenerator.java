@@ -21,12 +21,8 @@ public class TestSimpleGenerator {
 	
 	@Test
 	public void testIsPrime() {
+		Assert.assertFalse("Incorrectly claims 1 is prime", generator.isPrime(1));
 		Assert.assertTrue("Incorrectly claims 3 is not prime", generator.isPrime(3));
 		Assert.assertFalse("Incorrectly claims 4 is prime", generator.isPrime(4));
-		
-		try {
-			generator.isPrime(1);
-			Assert.fail("Should catch IllegalArgumentException for argument less than 2");
-		} catch (IllegalArgumentException e) {}
 	}
 }
