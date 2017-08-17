@@ -22,7 +22,10 @@ public class TestSimpleGenerator {
 	@Test
 	public void testIsPrime() {
 		Assert.assertFalse("Incorrectly claims 1 is prime", generator.isPrime(1));
+		Assert.assertTrue("Incorrectly claims 2 is not prime", generator.isPrime(2));
 		Assert.assertTrue("Incorrectly claims 3 is not prime", generator.isPrime(3));
 		Assert.assertFalse("Incorrectly claims 4 is prime", generator.isPrime(4));
+		Assert.assertTrue("Incorrectly claims 17 is not prime", generator.isPrime(17));
+		Assert.assertFalse("Incorrectly claims 15 is prime", generator.isPrime(15));
 	}
 }
