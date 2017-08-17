@@ -2,9 +2,9 @@ package com.jtodd.primegen;
 
 import org.junit.Test;
 
-public class TestSimpleGenerator {
-	
-	private static final PrimeNumberGenerator generator = new SimpleGenerator();
+public class TestSOEGenerator {
+
+	private static final SOEGenerator generator = new SOEGenerator();
 
 	@Test
 	public void testGenerate() {
