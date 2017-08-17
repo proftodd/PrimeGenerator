@@ -15,10 +15,13 @@ public class SOEGenerator implements PrimeNumberGenerator {
 		int end = Math.max(startingValue, endingValue);
 		boolean [] primes = new boolean[end - start + 1];
 		Arrays.fill(primes, Boolean.TRUE);
+		if (start < 2) {
+			IntStream.range(start, 2).forEach(i -> primes[i - start] = false);
+		}
 		for (int i = 2; i < Math.sqrt(end); ++i) {
 			for (int j = start / i; j <= end / i; ++j) {
 				int index = i * j - start;
-				if (index >= 0 && index < primes.length) {
+				if (index >= 0 && index < primes.length && j > 1) {
 					primes[index] = false;
 				}
 			}

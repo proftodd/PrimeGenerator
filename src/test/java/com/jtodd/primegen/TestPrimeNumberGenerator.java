@@ -8,8 +8,10 @@ public class TestPrimeNumberGenerator {
 	private static final Integer [] empty = new Integer [] {};
 	
 	public static void testGenerate(PrimeNumberGenerator generator) {
-		Integer [] expected = new Integer [] {7901, 7907, 7919};
-		Assert.assertArrayEquals("Wrong set of primes returned", expected, generator.generate(7900, 7920).toArray(empty));
+		Integer [] e1 = new Integer [] {7901, 7907, 7919};
+		Assert.assertArrayEquals("Wrong set of primes between 7900 and 7920 returned", e1, generator.generate(7900, 7920).toArray(empty));
+		Integer [] e2 = new Integer [] {2, 3, 5, 7, 11, 13, 17, 19};
+		Assert.assertArrayEquals("Wrong set of primes between 0 and 20 returned", e2, generator.generate(0, 20).toArray(empty));
 	}
 	
 	public static void testOrderDoesntMatter(PrimeNumberGenerator generator) {
