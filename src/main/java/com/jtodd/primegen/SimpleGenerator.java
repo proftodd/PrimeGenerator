@@ -2,33 +2,15 @@ package com.jtodd.primegen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class SimpleGenerator implements PrimeNumberGenerator {
 
+	@Override
 	public List<Integer> generate(int startingValue, int endingValue) {
-		ArrayList<Integer> results = new ArrayList<>();
-		int start = Math.min(startingValue,  endingValue);
-		int end = Math.max(startingValue,  endingValue);
-		for (int i = start; i <= end; ++i) {
-			if (isPrime(i)) {
-				results.add(i);
-			}
-		}
-		return results;
-	}
-
-	public boolean isPrime(int value) {
-		if (value < 2) {
-			return false;
-		}
-		if (value == 2 || value == 3) {
-			return true;
-		}
-		for (int i = 2; i <= Math.sqrt(value); ++i) {
-			if (value % i == 0) {
-				return false;
-			}
-		}
-		return true;
+		return IntStream.rangeClosed(Math.min(startingValue, endingValue), Math.max(startingValue, endingValue))
+				        .parallel()
+		                .filter(PrimeNumberGenerator::isPrime)
+		                .collect(() -> new ArrayList<>(), (l, i) -> l.add(i), (l1, l2) -> l1.addAll(l2));
 	}
 }
